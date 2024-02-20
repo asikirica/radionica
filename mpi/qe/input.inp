@@ -1,0 +1,84 @@
+&CONTROL
+    calculation   = "vc-relax"
+    forc_conv_thr =  1.00000e-03
+    max_seconds   =  1.72800e+05
+    nstep         = 100
+    outdir        = "./"
+    prefix        = "espresso"
+    pseudo_dir    = "./"
+    title         = "opt(Optimize)"
+    wf_collect    = .TRUE.
+    wfcdir        = "./"
+/
+
+&SYSTEM
+    a           =  4.98800e+00
+    c           =  1.70610e+01
+    degauss     =  1.00000e-02
+    ecutrho     =  2.25000e+02
+    ecutwfc     =  2.50000e+01
+    ibrav       = 4
+    nat         = 30
+    ntyp        = 3
+    occupations = "smearing"
+    smearing    = "gaussian"
+/
+
+&ELECTRONS
+    conv_thr         =  1.00000e-06
+    electron_maxstep = 200
+    mixing_beta      =  7.00000e-01
+    startingpot      = "atomic"
+    startingwfc      = "atomic+random"
+/
+
+&IONS
+    ion_dynamics = "bfgs"
+/
+
+&CELL
+    cell_dynamics  = "bfgs"
+    press_conv_thr =  5.00000e-01
+/
+
+K_POINTS {automatic}
+ 3  3  1  0 0 0
+
+ATOMIC_SPECIES
+Ca     40.07800  Ca.pbe-nsp-van.UPF
+C      12.01070  C.pbe-rrkjus.UPF
+O      15.99940  O.pbe-rrkjus.UPF
+
+ATOMIC_POSITIONS {angstrom}
+Ca      0.000000   0.000000   0.000000
+Ca      2.494000   1.439912   5.687000
+Ca      0.000000   2.879823  11.374000
+Ca      0.000000   0.000000   8.530500
+Ca      2.494000   1.439912  14.217500
+Ca      0.000000   2.879823   2.843500
+C       0.000000   0.000000   4.265250
+C       2.494000   1.439912   9.952250
+C       0.000000   2.879823  15.639250
+C       0.000000   0.000000  12.795750
+C       2.494000   1.439912   1.421750
+C       0.000000   2.879823   7.108750
+O       1.280420   0.000000   4.265250
+O       3.774420   1.439912   9.952250
+O       1.280420   2.879823  15.639250
+O       0.640210   1.108876  12.795750
+O       3.134210   2.548787   1.421750
+O       0.640210   3.988699   7.108750
+O      -0.640210   1.108876   4.265250
+O       1.853790   2.548787   9.952250
+O      -0.640210   3.988699  15.639250
+O       3.707580   0.000000  12.795750
+O       1.213580   1.439912   1.421750
+O      -1.280420   2.879823   7.108750
+O       1.853790   3.210859   4.265250
+O       1.853790   0.331036   9.952250
+O      -0.640210   1.770947  15.639250
+O      -1.853790   3.210859  12.795750
+O       3.134210   0.331036   1.421750
+O       0.640210   1.770947   7.108750
+
+

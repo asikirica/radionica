@@ -1,0 +1,37 @@
+=============================================================================
+Vizualizacija rezultata - ParaView
+=============================================================================
+
+
+=============================================================================
+BURA
+=============================================================================
+1. Ucitavanje modula
+module load ParaView/ParaView-5.10.0
+
+2. Pokretanje interativnog zadatka
+srun -p computes_thin -N 1 --pty bash
+
+3. Pokretanje ParaView servera
+pvserver
+=============================================================================
+
+
+=============================================================================
+LOCAL MACHINE
+=============================================================================
+1. Pokrenite novi shell/konzolu na lokalnom racunalu
+
+2. Podesite proslijedivanje
+ssh <login_node> -L 11111:<head_node>:11111
+ssh user@172.16.55.122 -L 11111:bura119:11111
+
+3. Instalirajte ParaView-5.10.0 na lokalno racunalo
+
+4. Pokrenite ParaView na lokalnom racunalu
+
+5. File > Connect > Add Server
+   Host: localhost
+   Port: 11111
+   Connect
+=============================================================================

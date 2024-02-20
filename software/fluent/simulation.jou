@@ -1,0 +1,335 @@
+; import
+file/import/cad
+no
+<PATH>/draft_tube
+*.step
+yes
+1
+yes
+mm
+; object
+objects/create
+geometry
+fluid
+3
+*
+()
+()
+geom
+; extract edges
+objects/extract-edges
+geometry
+()
+all
+30
+; curvature on edges
+scoped-sizing/create
+curvature
+curvature
+object-edges
+;object-faces-and-edges
+yes
+no
+*
+0.1
+100
+2
+10
+yes
+; soft sizing
+scoped-sizing/create
+soft
+soft
+object-faces
+yes
+no
+*
+50.0
+2
+; wrap
+objects/wrap/wrap
+geometry
+()
+collectively
+mesh
+shrink-wrap
+external
+model_point
+hybrid
+1
+yes
+; modify capture
+objects/improve-feature-capture
+*
+()
+5
+; region
+objects/volumetric-regions/compute
+mesh
+no
+; poly - specifics
+mesh/poly/controls/cell-sizing 
+geometric
+1.5
+; prisms - specifics
+mesh/prism/improve/smooth-brute-force
+yes
+mesh/prism/improve/smooth-sliver-skew
+0.9
+; prisms - layers
+mesh/scoped-prisms/create
+prisms
+uniform
+1
+3
+3
+mesh
+named-regions
+*
+selected-face-zones
+surface*
+; auto-mesh
+mesh/auto-mesh
+mesh
+yes
+scoped
+pyramids
+poly-hexcore
+yes
+; move nodes
+mesh/modify/auto-node-move
+*
+()
+*
+()
+0.4
+50
+120
+yes
+1
+; switch to solution and edit
+switch-to-solution-mode
+yes
+; modify zone name
+mesh/modify-zones/zone-name
+geometry*
+fluid
+; modify name
+mesh/modify-zones/zone-name
+inlet*
+inlet
+; modify name
+mesh/modify-zones/zone-name
+outlet*
+outlet
+; modify name
+mesh/modify-zones/zone-name
+surface*
+surface
+; scale the mesh
+mesh/scale
+0.001
+0.001
+0.001
+; checks round #1
+mesh/check
+mesh/repair-improve/repair
+mesh/repair-improve/improve-quality
+; checks round #2
+mesh/check
+mesh/repair-improve/repair
+mesh/repair-improve/improve-quality
+; define viscous model
+define/models/viscous/kw-sst
+yes
+; define water
+define/materials/change-create
+air
+water
+yes
+constant
+996.6
+yes
+constant
+4178
+yes
+constant
+0.609
+yes
+constant
+0.0009027
+yes
+18.01528
+yes
+0
+no
+yes
+; define VI
+define/boundary-conditions/zone-type
+inlet
+velocity-inlet
+; define pressure outlet
+define/boundary-conditions/zone-type
+outlet
+pressure-outlet
+; read profile
+file/read-profile
+/scratch/RITEH/ppr2/ivana_modificirani_test/Profile_0.7.prof
+; set inlet
+define/boundary-conditions/velocity-inlet
+inlet
+no
+yes
+yes
+no
+0
+yes
+yes
+no
+inlet_dif x-velocity
+yes
+no
+inlet_dif y-velocity
+yes
+no
+inlet_dif z-velocity
+no
+no
+no
+yes
+5
+1.082
+; set monitor: totPinlet
+solve/report-definitions/add
+totPinlet
+surface-massavg
+surface-names
+inlet
+()
+field
+total-pressure
+q
+; set monitor: totPoutlet
+solve/report-definitions/add
+totPoutlet
+surface-massavg
+surface-names
+outlet
+()
+field
+total-pressure
+q
+; set monitor: statPinlet
+solve/report-definitions/add
+statPinlet
+surface-massavg
+surface-names
+inlet
+()
+field
+pressure
+q
+; set monitor: statPoutlet
+solve/report-definitions/add
+statPoutlet
+surface-massavg
+surface-names
+outlet
+()
+field
+pressure
+q
+; set monitor: dinPinlet
+solve/report-definitions/add
+dinPinlet
+surface-massavg
+surface-names
+inlet
+()
+field
+dynamic-pressure
+q
+; set monitor: dinPoutlet
+solve/report-definitions/add
+dinPoutlet
+surface-massavg
+surface-names
+outlet
+()
+field
+dynamic-pressure
+q
+; generate report file
+solve/report-files/add
+results
+frequency-of
+iteration
+file-name
+results
+report-defs
+totPinlet
+totPoutlet
+statPinlet
+statPoutlet
+dinPinlet
+dinPoutlet
+()
+q
+; set numerical model: coupled & pseudo-transient
+solve/set/p-v-coupling
+24
+solve/set/pseudo-transient
+yes
+yes
+1
+1
+1
+; set numerical schemes
+solve/set/discretization-scheme/pressure
+1
+solve/set/discretization-scheme/mom
+0
+solve/set/discretization-scheme/k
+0
+solve/set/discretization-scheme/omega
+0
+; set underrelaxation
+solve/set/p-v-controls
+0.5
+0.2
+solve/set/pseudo-relaxation-factor/k
+0.5
+solve/set/pseudo-relaxation-factor/omega
+0.5
+solve/set/pseudo-relaxation-factor/turb-viscosity
+0.5
+; set residuals
+solve/monitors/residual/convergence-criteria
+1e-3
+1e-4
+1e-4
+1e-4
+1e-4
+1e-4
+; initialize and run
+solve/initialize/hyb-initialization
+; iterate
+it 100
+; set numerical schemes
+solve/set/discretization-scheme/mom
+1
+solve/set/numerics
+no
+yes
+no
+yes
+no
+0.5
+; iterate
+it 2000
+; save
+file/write-case-data
+model.cas
+; exit
+exit
+yes

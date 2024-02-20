@@ -1,0 +1,17 @@
+=============================================================================
+Optimizacija dizajna mosta - OptiStruct
+=============================================================================
+
+=============================================================================
+0. Licenca
+
+1. Ucitavanje modula
+module load Altair/OptiStruct_2021.1
+
+2. Pokretanje
+sbatch slurm_script.sh
+=============================================================================
+Vizualizacija:
+HyperView - Load results - *.fem + *.res
+HyperView - Results - Plot - Contour - Element density - Choose last step
+=============================================================================
