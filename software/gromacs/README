@@ -4,7 +4,7 @@ Slaganje proteina - GROMACS
 
 =============================================================================
 1. Ucitavanje modula
-module load gromacs/2022.2_Impi_IOneApi
+module load gromacs/2022.2
 
 2. Pokretanje
 sbatch slurm_script.sh

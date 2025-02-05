@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=15
 #SBATCH --mem-per-cpu=128MB
 #SBATCH --output=py-%j.out
-#SBATCH --partition=computes_thin
+#SBATCH --partition=RC232
 #SBATCH --exclusive
 
 set -x

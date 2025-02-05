@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=48
 #SBATCH --mem-per-cpu=1024MB
 #SBATCH --output=logit-%j.out
-#SBATCH --partition=computes_thin
+#SBATCH --partition=RC232
 
 # solver path
 solver=/scratch/opt2/Altair_HW_2021.1/altair/scripts/radioss

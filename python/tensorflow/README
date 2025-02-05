@@ -4,7 +4,7 @@ Predikcija odlijeva korisnika banke (klasifikacija) - tensorflow
 
 =============================================================================
 1. Ucitavanje modula
-module load AI/tensorflow_cpu_2.10.0
+module load AI/tensorflow_2.10.0_CPU
 
 2. Pokretanje
 sbatch slurm_script.sh

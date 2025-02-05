@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=1024MB
 #SBATCH --output=logit-%j.out
-#SBATCH --partition=computes_thin
+#SBATCH --partition=RC232
 
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 

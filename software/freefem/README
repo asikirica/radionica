@@ -4,7 +4,7 @@ Izmjena topline - FreeFEM
 
 =============================================================================
 1. Ucitavanje modula
-module load FreeFEM/4.10
+module load FreeFEM/v4.10
 
 2. Pokretanje
 sbatch slurm_script.sh

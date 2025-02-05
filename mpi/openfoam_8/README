@@ -4,7 +4,7 @@ Opstrujavanje oko NACA profila - OF8
 
 =============================================================================
 1. Ucitavanje modula
-module load OpenFOAM/OF8_IntelMPI-2019.8
+module load OpenFOAM/OpenFOAM_8-IntelMPI_2019.8
 
 2. Pokretanje
 sbatch slurm_script.sh

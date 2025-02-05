@@ -1,10 +1,10 @@
 =============================================================================
-Vortex shedding oko kugle - OFv2206
+Vortex shedding oko kugle - OF2206
 =============================================================================
 
 =============================================================================
 1. Ucitavanje modula
-module load OpenFOAM/v2206_IntelMPI-2021.5
+module load OpenFOAM/OpenFOAM_2206-IntelMPI_2021.5
 
 2. Pokretanje
 sbatch slurm_script.sh

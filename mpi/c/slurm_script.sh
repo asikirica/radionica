@@ -5,6 +5,6 @@
 #SBATCH --ntasks-per-node=2
 #SBATCH --mem-per-cpu=1024MB
 #SBATCH --output=logit-%j.out
-#SBATCH --partition=computes_thin
+#SBATCH --partition=RC232
 
 ./sum
